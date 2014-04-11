@@ -30,8 +30,15 @@ function DepatureController($scope){
     
     function updateTrips(trips){
         var now = new Date();
+        
+        var toBeRemoved = [];
         trips.map(function (trip) {
-            var minutesUntilDeparture = trip["minutesUntilDeparture"] = getMinutesBetween(trip.departure, now);
+            var minutesUntilDeparture = trip.minutesUntilDeparture = getMinutesBetween(trip.departure, now);
+            
+            if(minutesUntilDeparture <= 0){
+                toBeRemoved.push(trip);
+                return;
+            }
             
             var green = "progress-bar-success";
             var yellow = "progress-bar-warning";
@@ -45,10 +52,14 @@ function DepatureController($scope){
             } else {
                 progressCssClass = red;
             }
-            trip["progressCssClass"] = progressCssClass;
+            trip.progressCssClass = progressCssClass;
             
             var percentage = (1 - minutesUntilDeparture / 60) * 100;
-            trip["percentage"] = percentage;
+            trip.percentage = percentage;
+        });
+        
+        toBeRemoved.map(function (trip) {
+            $scope.trips.splice($scope.trips.indexOf(trip), 1);
         });
     }
     
