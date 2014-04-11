@@ -6,7 +6,7 @@ function todayAt(hour, minute){
 
 function getMinutesBetween(date1, date2){
     var diffMs = date1 - date2;
-    return Math.round(((diffMs % 86400000) % 3600000) / 60000); // in minutes
+    return Math.floor(diffMs/1000/60);
 }
 
 function createTrip(type, line, from, to, departure){
