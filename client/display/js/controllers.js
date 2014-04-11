@@ -45,7 +45,7 @@ function DepatureController($scope){
             var red = "progress-bar-danger";
             
             var progressCssClass;
-            if(minutesUntilDeparture >= 30){
+            if(minutesUntilDeparture >= 20){
                 progressCssClass = green;
             } else if(minutesUntilDeparture >= 10){
                 progressCssClass = yellow;
@@ -54,7 +54,7 @@ function DepatureController($scope){
             }
             trip.progressCssClass = progressCssClass;
             
-            var percentage = (1 - minutesUntilDeparture / 60) * 100;
+            var percentage = (1 - minutesUntilDeparture / 40) * 100;
             trip.percentage = percentage;
         });
         
