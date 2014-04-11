@@ -10,15 +10,13 @@ function getMinutesBetween(date1, date2){
 }
 
 function createTrip(type, line, from, to, departure){
-    var res = {
-        type: type,
-        line: line,
-        from: from,
-        to: to,
-        departure: departure,
+  return {
+      type: type,
+      line: line,
+      from: from,
+      to: to,
+      departure: departure,
     };
-    
-    return res;
 }
 
 function DepatureController($scope){
@@ -40,22 +38,21 @@ function DepatureController($scope){
                 return;
             }
             
-            var green = "progress-bar-success";
-            var yellow = "progress-bar-warning";
-            var red = "progress-bar-danger";
+            var onTimeCssClass = "progress-bar-success";
+            var soonCssClass = "progress-bar-warning";
+            var lateCssClass = "progress-bar-danger";
             
             var progressCssClass;
             if(minutesUntilDeparture >= 20){
-                progressCssClass = green;
+                progressCssClass = onTimeCssClass;
             } else if(minutesUntilDeparture >= 10){
-                progressCssClass = yellow;
+                progressCssClass = soonCssClass;
             } else {
-                progressCssClass = red;
+                progressCssClass = lateCssClass;
             }
             trip.progressCssClass = progressCssClass;
-            
-            var percentage = (1 - minutesUntilDeparture / 40) * 100;
-            trip.percentage = percentage;
+
+          trip.percentage = (1 - minutesUntilDeparture / 40) * 100;
         });
         
         toBeRemoved.map(function (trip) {
