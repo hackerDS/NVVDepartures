@@ -19,7 +19,9 @@
         </thead>
         <tbody>
           <tr ng-repeat-start="trip in trips">
-            <td rowspan="2"><div class="transportation {{trip.type}}">{{trip.line}}</div></td>
+            <td rowspan="2">
+              <div class="transportation {{trip.type}}">{{trip.line}}</div>
+            </td>
             <td>{{trip.from}}</td>
             <td>{{trip.to}}</td>
             <td>{{trip.departure | date : "HH:mm"}}</td>
@@ -27,9 +29,12 @@
           <tr ng-repeat-end>
             <td colspan="3">
               <div class="progress">
-                <div class="progress-bar {{trip.progressCssClass}}" role="progressbar" aria-valuenow="92" aria-valuemin="0"
+                <div class="progress-bar {{trip.progressCssClass}}" role="progressbar" aria-valuenow="92"
+                     aria-valuemin="0"
                      aria-valuemax="100" style="width: {{trip.percentage}}%;">
-                  In {{trip.minutesUntilDeparture}} minutes
+                  <ng-pluralize count="trip.minutesUntilDeparture"
+                                when="{'0': 'Now', 'one': 'In 1 minute', 'other': 'In {} minutes'}">
+                  </ng-pluralize>
                 </div>
               </div>
             </td>

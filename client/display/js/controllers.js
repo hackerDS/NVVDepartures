@@ -20,10 +20,13 @@ function createTrip(type, line, from, to, departure){
 }
 
 function DepatureController($scope){
-    $scope.trips = [
-        createTrip("tram", 3, "Königsplatz", "Oberkaufungen", todayAt(23,30)),
-        createTrip("tram", 7, "Königsplatz", "Oberkaufungen", todayAt(23,45)),
-        createTrip("bus", 2, "Königsplatz", "Oberkaufungen", todayAt(23,59)),
+  var today = new Date();
+  var hour = today.getHours();
+  $scope.trips = [
+        createTrip("tram", 4, "Königsplatz", "Oberkaufungen", todayAt(hour,00)),
+        createTrip("tram", 7, "Königsplatz", "Ihringshäuser Straße", todayAt(hour,15)),
+        createTrip("bus", 32, "Königsplatz/Mauerstraße", "Heiligenrode", todayAt(hour,30)),
+        createTrip("tram", 1, "Königsplatz", "Vellmar", todayAt(hour,45)),
     ];
     
     function updateTrips(trips){
