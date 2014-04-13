@@ -1,9 +1,3 @@
-function todayAt(hour, minute){
-    var today = new Date();
-    today.setHours(hour, minute);
-    return today;
-}
-
 function getMinutesBetween(date1, date2){
     var diffMs = date1 - date2;
     return Math.floor(diffMs/1000/60);
@@ -20,15 +14,23 @@ function createTrip(type, line, from, to, departure){
 }
 
 function DepatureController($scope){
-  var today = new Date();
-  var hour = today.getHours();
-  $scope.trips = [
-        createTrip("tram", 4, "Königsplatz", "Oberkaufungen", todayAt(hour,00)),
-        createTrip("tram", 7, "Königsplatz", "Ihringshäuser Straße", todayAt(hour,15)),
-        createTrip("bus", 32, "Königsplatz/Mauerstraße", "Heiligenrode", todayAt(hour,30)),
-        createTrip("tram", 1, "Königsplatz", "Vellmar", todayAt(hour,45)),
-    ];
-    
+
+    $scope.trips = [];
+
+    nvvTrips.registerNewTripHandler(function (trip) {
+      $scope.$apply(function () {
+        $scope.trips.push(
+          createTrip(
+            "tram",
+            trip.line,
+            trip.from,
+            trip.to,
+            new Date(trip.departure)));
+      });
+
+      updateTrips($scope.trips);
+    });
+
     function updateTrips(trips){
         var now = new Date();
         
@@ -57,10 +59,12 @@ function DepatureController($scope){
 
           trip.percentage = (1 - minutesUntilDeparture / 40) * 100;
         });
-        
+
+        /*
         toBeRemoved.map(function (trip) {
             $scope.trips.splice($scope.trips.indexOf(trip), 1);
         });
+        */
     }
     
     setInterval(function() {
@@ -70,6 +74,7 @@ function DepatureController($scope){
     }, 1000 * 30);
     
     updateTrips($scope.trips);
+    nvvTrips.requestTrips();
 }
 
 DepatureController.$inject = ["$scope"];
