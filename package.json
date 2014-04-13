@@ -5,7 +5,8 @@
   "main": "Gruntfile.js",
   "dependencies": {
     "grunt": "~0.4.4",
-    "request": "~2.34.0"
+    "request": "~2.34.0",
+    "moment": "~2.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

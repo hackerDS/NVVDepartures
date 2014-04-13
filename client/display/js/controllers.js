@@ -3,29 +3,30 @@ function getMinutesBetween(date1, date2){
     return Math.floor(diffMs/1000/60);
 }
 
-function createTrip(type, line, from, to, departure){
-  return {
-      type: type,
-      line: line,
-      from: from,
-      to: to,
-      departure: departure,
-    };
-}
-
 function DepatureController($scope){
 
     $scope.trips = [];
 
     nvvTrips.registerNewTripHandler(function (trip) {
       $scope.$apply(function () {
-        $scope.trips.push(
-          createTrip(
-            "tram",
-            trip.line,
-            trip.from,
-            trip.to,
-            new Date(trip.departure)));
+
+        trip.departure = new Date(trip.departure);
+        trip.arrival = new Date(trip.arrival);
+
+        var toBeUpdated = $scope.trips.filter(function(t){
+          return t.line === trip.line &&
+                 t.from === trip.from &&
+                 t.direction === trip.direction &&
+                 t.departure.valueOf() === trip.departure.valueOf() &&
+                 t.arrival.valueOf() < trip.arrival.valueOf();
+        });
+
+        if(toBeUpdated.length > 0){
+          var index = $scope.trips.indexOf(toBeUpdated[0]);
+          $scope.trips.splice(index,1);
+        }
+
+        $scope.trips.push(trip);
       });
 
       updateTrips($scope.trips);
@@ -60,11 +61,9 @@ function DepatureController($scope){
           trip.percentage = (1 - minutesUntilDeparture / 40) * 100;
         });
 
-        /*
         toBeRemoved.map(function (trip) {
             $scope.trips.splice($scope.trips.indexOf(trip), 1);
         });
-        */
     }
     
     setInterval(function() {
