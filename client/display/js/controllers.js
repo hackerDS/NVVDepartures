@@ -13,20 +13,31 @@ function DepatureController($scope){
         trip.departure = new Date(trip.departure);
         trip.arrival = new Date(trip.arrival);
 
-        var toBeUpdated = $scope.trips.filter(function(t){
-          return t.line === trip.line &&
-                 t.from === trip.from &&
-                 t.direction === trip.direction &&
-                 t.departure.valueOf() === trip.departure.valueOf() &&
-                 t.arrival.valueOf() < trip.arrival.valueOf();
+        var doesContain = function(longer, shorter){
+          return shorter.line === longer.line &&
+                 shorter.from === longer.from &&
+                 shorter.direction === longer.direction &&
+                 shorter.departure.valueOf() === longer.departure.valueOf() &&
+                 shorter.arrival.valueOf() < longer.arrival.valueOf();
+        };
+
+        // remove already contained
+        var toBeRemoved = $scope.trips.filter(function(t){
+          return doesContain(trip, t);
         });
 
-        toBeUpdated.forEach(function(t){
+        toBeRemoved.forEach(function(t){
           var index = $scope.trips.indexOf(t);
           $scope.trips.splice(index,1);
         });
 
-        $scope.trips.push(trip);
+        var anyContainsCurrent = $scope.trips.some(function(t){
+          return doesContain(t, trip);
+        });
+
+        if(!anyContainsCurrent){
+          $scope.trips.push(trip);
+        }
       });
 
       updateTrips($scope.trips);
