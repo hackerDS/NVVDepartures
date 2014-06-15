@@ -13,7 +13,7 @@ module.exports = function Server(hackerDS) {
       ["Am Stern", "Kaufungen-Papierfabrik"],
       ["Am Stern", "Oberkaufungen Bahnhof"],
       ["Am Stern", "Helsa"],
-      ["Am Stern", "Hessisch Lichtenau"],
+      ["Am Stern", "Hessisch Lichtenau Bürgerhaus"],
     ],
     "Linie 4 Richtung Mattenberg": [
       ["Am Stern", "Mattenberg"],
