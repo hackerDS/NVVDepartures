@@ -37,7 +37,13 @@ module.exports = function Server(hackerDS) {
           var apiTrips = JSON.parse(body);
           apiTrips.times.forEach(function(t){
             var departure = new Date();
-            departure.setHours(t.departure.hour, t.departure.minute);
+            departure.setHours(
+              t.departure.hour,   // hours
+              t.departure.minute, // minutes
+              0,                  // seconds
+              0);                 // milliseconds
+
+            debugger;
 
             if(departure < now) return;
             if(t.lines.length > 1)return; // we only want direct connections

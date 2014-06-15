@@ -21,10 +21,10 @@ function DepatureController($scope){
                  t.arrival.valueOf() < trip.arrival.valueOf();
         });
 
-        if(toBeUpdated.length > 0){
-          var index = $scope.trips.indexOf(toBeUpdated[0]);
+        toBeUpdated.forEach(function(t){
+          var index = $scope.trips.indexOf(t);
           $scope.trips.splice(index,1);
-        }
+        });
 
         $scope.trips.push(trip);
       });
