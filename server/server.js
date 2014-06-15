@@ -5,7 +5,7 @@ module.exports = function Server(hackerDS) {
   var mySelf = this;
   
   mySelf.init = function(){
-    console.log('init hello world module');
+    console.log('init NVVDepartures module');
   };
   
   var trips = {
@@ -39,6 +39,7 @@ module.exports = function Server(hackerDS) {
             departure.setHours(t.departure.hour, t.departure.minute);
 
             if(departure < now) return;
+            if(t.lines.length > 1)return; // we only want direct connections
 
             var lineString = t.lines[0];
             var lineRegex = /Tram ([1|3|4|5|6|7|8])/
@@ -59,7 +60,7 @@ module.exports = function Server(hackerDS) {
               arrival: arrival,
               direction: direction
             };
-              
+
             hackerDS.display.send("newTrip", JSON.stringify(newTrip));
           });
         });
