@@ -11,6 +11,7 @@ module.exports = function Server(hackerDS) {
   var trips = {
     "Linie 4 Richtung Heli": [
       ["Am Stern", "Kaufungen-Papierfabrik"],
+      ["Am Stern", "Oberkaufungen Bahnhof"],
       ["Am Stern", "Helsa"],
       ["Am Stern", "Hessisch Lichtenau"],
     ],
