@@ -3,6 +3,20 @@ function getMinutesBetween(date1, date2){
     return Math.floor(diffMs/1000/60);
 }
 
+function compareProperties(obj1, obj2, props){
+  for(var i in props){
+    var prop = props[i];
+
+    var val1 = obj1[prop];
+    var val2 = obj2[prop];
+    if(JSON.stringify(val1) !== JSON.stringify(val2)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function DepatureController($scope){
 
     $scope.trips = [];
@@ -35,7 +49,12 @@ function DepatureController($scope){
           return doesContain(t, trip);
         });
 
-        if(!anyContainsCurrent){
+        var containsTrip = $scope.trips.some(function(t){
+          return compareProperties(trip, t,
+            ['line', 'from', 'direction', 'departure', 'arrival']);
+        });
+
+        if(!anyContainsCurrent && !containsTrip){
           $scope.trips.push(trip);
         }
       });
@@ -85,6 +104,12 @@ function DepatureController($scope){
     
     updateTrips($scope.trips);
     nvvTrips.requestTrips();
+
+    // query the server for new trips
+    // every minute
+    setInterval(function(){
+      nvvTrips.requestTrips();
+    }, 1000 * 60);
 }
 
 DepatureController.$inject = ["$scope"];
