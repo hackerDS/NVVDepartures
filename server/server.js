@@ -19,8 +19,8 @@ module.exports = function Server(hackerDS) {
       ["Am Stern", "Mattenberg"],
     ],
     "Linie 7 Richtung Bahnhof Wilhelmshöhe": [
-      ["Lutherplatz", "Bahnhof Wilhelmshöhe"],
-      ["Lutherplatz", "Mattenberg"],
+      ["Kassel Lutherplatz", "Kassel Bahnhof Wilhelmshöhe"],
+      ["Kassel Lutherplatz", "Kassel Mattenberg"],
     ],
     "Linie 1 Richtung Wilhelmshöhe":[
       ["Am Stern", "Kassel Wilhelmshöhe (Park)"]
