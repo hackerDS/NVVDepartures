@@ -10,23 +10,19 @@ module.exports = function Server(hackerDS) {
   
   var trips = {
     "Linie 4 Richtung Heli": [
-      ["Am Stern", "Kaufungen-Papierfabrik"],
-      ["Am Stern", "Oberkaufungen Bahnhof"],
-      ["Am Stern", "Helsa"],
-      ["Am Stern", "Hessisch Lichtenau Bürgerhaus"],
-    ],
-    "Linie 4 Richtung Mattenberg": [
-      ["Am Stern", "Mattenberg"],
+      ["Königsplatz", "Niederkaufungen Bahnhof"],
     ],
     "Linie 7 Richtung Bahnhof Wilhelmshöhe": [
-      ["Kassel Lutherplatz", "Kassel Bahnhof Wilhelmshöhe"],
-      ["Kassel Lutherplatz", "Kassel Mattenberg"],
+      ["Lutherplatz", "Bahnhof Wilhelmshöhe"]
     ],
-    "Linie 1 Richtung Wilhelmshöhe":[
-      ["Am Stern", "Kassel Wilhelmshöhe (Park)"]
+    "Linie 3 Richtung Druseltal": [
+      ["Am Stern", "Druseltal"]
     ],
-    "Linie 8 Richtung Hessenschanze": [
-      ["Am Stern", "Hessenschanze"]
+    "Linie 1 Richtung Wilhelmshöhe": [
+      ["Königsplatz", "Kassel Wilhelmshöhe (Park)"]
+    ],
+    "Andere": [
+      ["KönigsplatZ", "Am Weinberg"]
     ]
   }
   
