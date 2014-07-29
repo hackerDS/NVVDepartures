@@ -20,6 +20,14 @@ function compareProperties(obj1, obj2, props){
 function DepatureController($scope){
 
     $scope.trips = [];
+    $scope.time = null;
+
+    setInterval(function(){
+      $scope.$apply(function(){
+        var date = new Date();
+        $scope.time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + " Uhr"
+      })
+    }, 1000);
 
     nvvTrips.registerNewTripHandler(function (trip) {
       $scope.$apply(function () {
