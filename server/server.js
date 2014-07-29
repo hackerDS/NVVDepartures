@@ -10,19 +10,19 @@ module.exports = function Server(hackerDS) {
   
   var trips = {
     "Linie 4 Richtung Heli": [
-      ["Königsplatz", "Niederkaufungen Bahnhof"],
+      ["Kassel Königsplatz", "Niederkaufungen Bahnhof"],
     ],
     "Linie 7 Richtung Bahnhof Wilhelmshöhe": [
-      ["Lutherplatz", "Bahnhof Wilhelmshöhe"]
+      ["Kassel Lutherplatz", "Bahnhof Wilhelmshöhe"]
     ],
     "Linie 3 Richtung Druseltal": [
-      ["Am Stern", "Druseltal"]
+      ["Kassel Am Stern", "Kassel Druseltal"]
     ],
     "Linie 1 Richtung Wilhelmshöhe": [
-      ["Königsplatz", "Kassel Wilhelmshöhe (Park)"]
+      ["Kassel Königsplatz", "Kassel Wilhelmshöhe (Park)"]
     ],
     "Andere": [
-      ["KönigsplatZ", "Am Weinberg"]
+      ["Kassel Königsplatz", "Kassel Am Weinberg"]
     ]
   }
   
