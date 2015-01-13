@@ -21,12 +21,12 @@ module.exports = function Server(hackerDS) {
     "Linie 1 Richtung Wilhelmshöhe": [
       ["Kassel Königsplatz", "Kassel Wilhelmshöhe (Park)"]
     ],
-	["Linie 1 Richtung Vellmar": [
-	  ["Kassel Am Stern", "Wiener Straße"]
-	],
-	["Linie 18 / 19 Richtung Harleshaus Rasenallee / Holländische Straße": [
-	  ["Kassel Erzbergerstraße", "Kassel Engelhardstraße"]
-	],
+    "Linie 1 Richtung Vellmar": [
+      ["Kassel Am Stern", "Wiener Straße"]
+    ],
+    "Linie 18 / 19 Richtung Harleshausen Rasenallee / Holländische Straße": [
+      ["Kassel Erzbergerstraße", "Kassel Engelhardstraße"]
+    ],
     "Andere": [
       ["Kassel Königsplatz", "Kassel Am Weinberg"]
     ]
