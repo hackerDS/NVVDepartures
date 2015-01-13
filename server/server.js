@@ -22,9 +22,9 @@ module.exports = function Server(hackerDS) {
       ["Kassel Königsplatz", "Kassel Wilhelmshöhe (Park)"]
     ],
     "Linie 1 Richtung Vellmar": [
-      ["Kassel Am Stern", "Wiener Straße"]
+      ["Kassel Am Stern", "Kassel Wiener Straße"]
     ],
-    "Linie 18 / 19 Richtung Harleshausen Rasenallee / Holländische Straße": [
+    "Linie 18 19 Richtung Harleshausen Rasenallee Holländische Straße": [
       ["Kassel Erzbergerstraße", "Kassel Engelhardstraße"]
     ],
     "Andere": [
@@ -58,17 +58,18 @@ module.exports = function Server(hackerDS) {
             if(t.lines.length > 1)return; // we only want direct connections
 
             var lineString = t.lines[0];
-            var lineRegex = /Tram ([1|3|4|5|6|7|8])/
+            var lineRegex = /(Tram|Bus|RT) (\d+)/
             var lineMatch = lineString.match(lineRegex);
             if(!lineMatch) return;
-            var line = lineMatch[1];
+            var transportationType = lineMatch[1].toLowerCase();
+            var line = lineMatch[2];
 
             var arrival = moment(departure)
               .add('h', t.duration.hours)
               .add('m', t.duration.minutes)
             
             var newTrip = {
-              type: "tram",
+              type: transportationType,
               from: apiTrips.from,
               to: apiTrips.to,
               line: line,
